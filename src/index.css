@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #013b82;
+  --color-brand: #0252a3;
+  --color-brand-light: #f5f7fa;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-light);
+    color: var(--color-slate-800);
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Custom background for login page matching design */
+.login-bg {
+  background: radial-gradient(circle at top left, rgba(2, 82, 163, 0.05) 0%, transparent 40%),
+              radial-gradient(circle at bottom right, rgba(2, 82, 163, 0.05) 0%, transparent 40%),
+              #f5f7fa;
+}
