@@ -3,21 +3,35 @@ import { Mail, Lock, ArrowRight, Box } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
+import {
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence
+} from "firebase/auth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
+      // SET SESSION BASED ON CHECKBOX
+      await setPersistence(
+        auth,
+        rememberMe ? browserLocalPersistence : browserSessionPersistence
+      );
+
       await signInWithEmailAndPassword(auth, email, password);
+
       navigate("/dashboard");
+
     } catch (err) {
       setError("Email atau password salah.");
       console.error(err);
@@ -75,6 +89,8 @@ export default function Login() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
                   className="h-4 w-4 rounded border-slate-300 text-brand-dark focus:ring-brand-dark text-[#013b82]"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-600">

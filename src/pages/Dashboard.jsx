@@ -1,5 +1,10 @@
 import React from 'react';
 import { BarChart3, Users, Box, TrendingUp } from 'lucide-react';
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/config";
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function Dashboard() {
   const stats = [
@@ -19,6 +24,8 @@ export default function Dashboard() {
     return classes[color] || classes.blue;
   };
 
+
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -33,15 +40,15 @@ export default function Dashboard() {
         {stats.map((stat, index) => (
           <div key={index} className="bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex items-center">
             <div className={`p-4 rounded-lg bg-opacity-50 ${getColorClasses(stat.color)} mr-4`}>
-               <stat.icon size={24} />
+              <stat.icon size={24} />
             </div>
             <div>
               <p className="text-sm font-medium text-slate-500">{stat.title}</p>
               <div className="flex items-baseline space-x-2 mt-1">
-                 <h3 className="text-2xl font-bold text-slate-900">{stat.value}</h3>
-                 <span className={`text-xs font-semibold ${stat.change.startsWith('+') ? 'text-green-600' : 'text-red-500'}`}>
-                   {stat.change}
-                 </span>
+                <h3 className="text-2xl font-bold text-slate-900">{stat.value}</h3>
+                <span className={`text-xs font-semibold ${stat.change.startsWith('+') ? 'text-green-600' : 'text-red-500'}`}>
+                  {stat.change}
+                </span>
               </div>
             </div>
           </div>
