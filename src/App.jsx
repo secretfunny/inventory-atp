@@ -4,10 +4,22 @@ import DashboardLayout from './layouts/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from "./components/ProtectedRoute";
 import Inventaris from "./pages/Inventaris";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
+
     <Router>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+        }}
+      />
       <Routes>
         <Route path="/" element={<Login />} />
 

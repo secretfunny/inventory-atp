@@ -21,6 +21,22 @@
 /* Custom background for login page matching design */
 .login-bg {
   background: radial-gradient(circle at top left, rgba(2, 82, 163, 0.05) 0%, transparent 40%),
-              radial-gradient(circle at bottom right, rgba(2, 82, 163, 0.05) 0%, transparent 40%),
-              #f5f7fa;
+    radial-gradient(circle at bottom right, rgba(2, 82, 163, 0.05) 0%, transparent 40%),
+    #f5f7fa;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
 }
